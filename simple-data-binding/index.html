@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular - Expressions & Simple Data Binding</title>
+</head>
+
+<body ng-app>
+    <h2>Angular - Expressions & Simple Data Binding</h2>
+    <div>
+        <h3>Expressions</h4>
+        <p>
+            <span>Let me add two numbers say 5 and 8 :</span><span>{{ 5 + 8 }}</span>
+        </p>
+        <p>
+            <span>You can so do it like this </span><span> 4 * 6 : {{ 4 * 6}}</span>
+        </p>
+    </div>
+    <div>
+        <h3>Two way bindings</h3>
+        <p>Please enter a number, and lets multiply it by 48.</p>
+        <input type="text" ng-model="x" placeholder="Enter a number">
+        <span> * 48 = </span><span>{{ x * 48 }}</span>
+        <br>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+</body>
+
+</html>

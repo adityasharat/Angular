@@ -2,7 +2,7 @@
     var NotesApp = angular.module('NotesApp', ['ngResource']);
 
     NotesApp.factory('NotesService', function ($http, $resource, $q, $timeout) {
-        var resource = $resource('data/notes.json');
+        var resource = $resource('/data/notes');
         var deferred = $q.defer();
         var promise = deferred.promise;
         var notes;

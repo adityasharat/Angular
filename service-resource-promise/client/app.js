@@ -33,7 +33,7 @@
         return promise;
     });
 
-    NotesApp.controller('start', function ($scope, $rootScope, NotesService) {
+    NotesApp.controller('start', function ($rootScope, $scope, $rootScope, NotesService) {
         NotesService.fetch();
 
         $scope.addNote = function () {
@@ -49,6 +49,11 @@
             $scope.body = '';
             $scope.title = '';
         };
+
+        $rootScope.$on('edit-note', function (event, note) {
+            $scope.body = note.body;
+            $scope.title = note.title;
+        });
     });
 
     NotesApp.directive('notes', function () {
@@ -82,11 +87,9 @@
             // priority: 1,
             // terminal: true,
             // scope: {}, // {} = isolate, true = child, false/undefined = no change
-            controller: function ($scope, $element, $attrs, $transclude) {
-                var note = $scope.note;
-
+            controller: function ($rootScope, $scope, $element, $attrs, $transclude) {
                 $scope.click = function ($event) {
-                    console.log($element);
+                    $rootScope.$emit('edit-note', $scope.note);
                 };
             },
             require: '^notes', // Array = multiple requires, ? = optional, ^ = check parent elements

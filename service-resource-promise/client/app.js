@@ -1,29 +1,31 @@
 (function (angular) {
     var NotesApp = angular.module('NotesApp', ['ngResource']);
 
-    NotesApp.factory('NotesService', function ($http, $resource, $q, $timeout) {
-        var resource = $resource('/data/notes');
-        var deferred = $q.defer();
-        var promise = deferred.promise;
-        var notes;
+    NotesApp.factory('NotesService', function ($resource, $q) {
+        var resource = $resource('/data/notes/:id'),
+            deferred = $q.defer(),
+            promise = deferred.promise,
+            notes = [];
 
-        promise.getNotes = function () {
-            if (notes) {
-                return notes;
-            }
-
+        promise.fetch = function () {
             resource.query().$promise.then(function (data) {
                 notes = data;
                 deferred.notify(notes);
             });
-
-
             return this;
         };
 
-        promise.addNotes = function (note) {
-            notes.push(note);
-            deferred.notify(notes);
+        promise.all = function () {
+            return notes;
+        };
+
+        promise.add = function (note) {
+            var newNote = new resource(note);
+
+            newNote.$save(function () {
+                notes.push(newNote);
+                deferred.notify(notes);
+            });
 
             return this;
         };
@@ -32,12 +34,14 @@
     });
 
     NotesApp.controller('start', function ($scope, $rootScope, NotesService) {
+        NotesService.fetch();
+
         $scope.addNote = function () {
             if (!$scope.body || !$scope.title) {
                 return;
             }
 
-            NotesService.addNotes({
+            NotesService.add({
                 body : $scope.body,
                 title : $scope.title
             });
@@ -55,7 +59,8 @@
             // terminal: true,
             scope: {}, // {} = isolate, true = child, false/undefined = no change
             controller: function ($scope, $element, $attrs, $transclude, NotesService, $timeout) {
-                NotesService.getNotes().then(null, null, function (notes) {
+                $scope.notes = NotesService.all();
+                NotesService.then(null, null, function (notes) {
                     $scope.notes = notes;
                 });
             },
@@ -81,7 +86,7 @@
                 var note = $scope.note;
 
                 $scope.click = function ($event) {
-                    // do stuff
+                    console.log($element);
                 };
             },
             require: '^notes', // Array = multiple requires, ? = optional, ^ = check parent elements

@@ -23,9 +23,8 @@ app.set('port', 3000);
 app.use(express.static('./client'));
 app.use(bodyParser());
 
-app.get('/data/:resource/:id?', function (req, res) {
-    var resource = req.params.resource,
-        id = req.params.id;
+app.get('/data/notes/:id?', function (req, res) {
+    var id = req.params.id;
 
     if (id) {
         res.send(notes[id], 200);
@@ -34,9 +33,13 @@ app.get('/data/:resource/:id?', function (req, res) {
     }
 });
 
-app.post('/data/:resource/', function (req, res) {
-    notes.push(req.body);
-    res.send(notes, 200);
+app.post('/data/notes', function (req, res) {
+    var note = req.body;
+
+    note.id = notes.length;
+    notes.push(note)
+
+    res.send(note, 200);
 });
 
 /* Route: all others go to the defult client webapp for now */

@@ -1,7 +1,7 @@
 (function (angular) {
     var NotesApp = angular.module('NotesApp', ['ngResource', 'ngRoute']);
 
-    NotesApp.config(function($routeProvider) {
+    NotesApp.config(function ($routeProvider) {
         $routeProvider
             // route for the home page
             .when('/allnotes', {
@@ -9,6 +9,10 @@
                 controller  : 'AllNotes'
             })
             .when('/createnote', {
+                templateUrl : 'pages/create-note.html',
+                controller  : 'CreateNote'
+            })
+            .when('/editnote/:noteid', {
                 templateUrl : 'pages/create-note.html',
                 controller  : 'CreateNote'
             })
@@ -22,6 +26,8 @@
             deferred = $q.defer(),
             promise = deferred.promise,
             notes = [];
+
+        promise.resource = resource;
 
         promise.all = function () {
             return notes;
@@ -49,27 +55,28 @@
         return promise;
     });
 
-    NotesApp.controller('CreateNote', function ($rootScope, $scope, NotesService) {
-        NotesService.fetch();
+    NotesApp.controller('CreateNote', function ($rootScope, $scope, $routeParams, NotesService) {
+        var note = new NotesService.resource().$get({
+            id : $routeParams.noteid
+        });
+
+        note.then(function (data) {
+            $scope.note = data;
+        });
 
         $scope.addNote = function () {
-            if (!$scope.body || !$scope.title) {
+            if (!$scope.note.body || !$scope.note.title) {
                 return;
             }
 
             NotesService.add({
-                body : $scope.body,
-                title : $scope.title
+                body : $scope.note.body,
+                title : $scope.note.title
             });
 
-            $scope.body = '';
-            $scope.title = '';
+            $scope.note.body = '';
+            $scope.note.title = '';
         };
-
-        $rootScope.$on('edit-note', function (event, note) {
-            $scope.body = note.body;
-            $scope.title = note.title;
-        });
     });
 
     NotesApp.controller('AllNotes', function ($scope, NotesService) {
@@ -107,9 +114,9 @@
             // priority: 1,
             // terminal: true,
             // scope: {}, // {} = isolate, true = child, false/undefined = no change
-            controller: function ($rootScope, $scope, $element, $attrs, $transclude) {
-                $scope.click = function ($event) {
-                    $rootScope.$emit('edit-note', $scope.note);
+            controller: function ($rootScope, $scope, $location, $element, $attrs, $transclude) {
+                $scope.click = function () {
+                    $location.path('editnote/' + $scope.note.id);
                 };
             },
             require: '^notes', // Array = multiple requires, ? = optional, ^ = check parent elements

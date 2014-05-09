@@ -3,11 +3,11 @@
     <div class="form-create-note">
         <div class="form-element">
             <div><label for="title">Title : </label></div>
-            <input type="text" ng-model="title">
+            <input type="text" ng-model="note.title">
         </div>
         <div class="form-element">
             <div><label for="body">Body : </label></div>
-            <textarea type="text" ng-model="body"></textarea>
+            <textarea type="text" ng-model="note.body"></textarea>
         </div>
         <div class="form-element">
             <input class="form-button" type="button" ng-click="addNote()" value="Add Notes">

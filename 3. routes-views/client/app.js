@@ -56,13 +56,20 @@
     });
 
     NotesApp.controller('CreateNote', function ($rootScope, $scope, $routeParams, NotesService) {
-        var note = new NotesService.resource().$get({
-            id : $routeParams.noteid
-        });
+        var note;;
 
-        note.then(function (data) {
-            $scope.note = data;
-        });
+        $scope.mode = 'Add';
+
+        if ($routeParams.noteid || $routeParams.noteid === 0) {
+            note = new NotesService.resource().$get({
+                id : $routeParams.noteid
+            });
+            note.then(function (data) {
+                $scope.mode = 'Edit';
+                $scope.note = data;
+            });
+        }
+
 
         $scope.addNote = function () {
             if (!$scope.note.body || !$scope.note.title) {

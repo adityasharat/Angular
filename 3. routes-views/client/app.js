@@ -22,7 +22,7 @@
     });
 
     NotesApp.factory('NotesService', function ($resource, $q) {
-        var resource = $resource('/data/notes/:id'),
+        var resource = $resource('/data/notes/:id', null, { update: { method: 'PUT' } }),
             deferred = $q.defer(),
             promise = deferred.promise,
             notes = [];
@@ -56,7 +56,7 @@
     });
 
     NotesApp.controller('CreateNote', function ($rootScope, $scope, $routeParams, NotesService) {
-        var note;;
+        var note;
 
         $scope.mode = 'Add';
 
@@ -64,16 +64,18 @@
         // fetch the note from the server
         // display it in the view
         if ($routeParams.noteid) {
-            note = new NotesService.resource()
-
-            note.$get({
+            note = NotesService.resource.get({
                 id : $routeParams.noteid
-            }).then(function (data) {
+            }).$promise.then(function (data) {
                 $scope.mode = 'Edit';   // change the text of the button to 'Edit Note'
                 $scope.note = data;
             });
+        } else {
+            note = new NotesService.resource({
+                body : '',
+                title : ''
+            });
         }
-
 
         $scope.saveNote = function () {
             if (!$scope.note.body || !$scope.note.title) {
@@ -81,18 +83,20 @@
             }
 
             if ($scope.note.id) {
-                $scope.note.$save().then(function (data) {
-                    console.log(data);
+                NotesService.resource
+                    .update({id : $scope.note.id}, $scope.note)
+                    .$promise.then(function () {
+                        $scope.note.body = '';
+                        $scope.note.title = '';
+                        $scope.mode = 'Add';
+                    });
+            } else {
+                angular.extend(note, $scope.note);
+                note.$save(function (data) {
                     $scope.note.body = '';
                     $scope.note.title = '';
                 });
-            } else {
-                NotesService.add({
-                    body : $scope.note.body,
-                    title : $scope.note.title
-                });
             }
-
         };
     });
 

@@ -60,29 +60,39 @@
 
         $scope.mode = 'Add';
 
-        if ($routeParams.noteid || $routeParams.noteid === 0) {
-            note = new NotesService.resource().$get({
+        // if the route has a note id open the view in edit mode.
+        // fetch the note from the server
+        // display it in the view
+        if ($routeParams.noteid) {
+            note = new NotesService.resource()
+
+            note.$get({
                 id : $routeParams.noteid
-            });
-            note.then(function (data) {
-                $scope.mode = 'Edit';
+            }).then(function (data) {
+                $scope.mode = 'Edit';   // change the text of the button to 'Edit Note'
                 $scope.note = data;
             });
         }
 
 
-        $scope.addNote = function () {
+        $scope.saveNote = function () {
             if (!$scope.note.body || !$scope.note.title) {
                 return;
             }
 
-            NotesService.add({
-                body : $scope.note.body,
-                title : $scope.note.title
-            });
+            if ($scope.note.id) {
+                $scope.note.$save().then(function (data) {
+                    console.log(data);
+                    $scope.note.body = '';
+                    $scope.note.title = '';
+                });
+            } else {
+                NotesService.add({
+                    body : $scope.note.body,
+                    title : $scope.note.title
+                });
+            }
 
-            $scope.note.body = '';
-            $scope.note.title = '';
         };
     });
 

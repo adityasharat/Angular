@@ -1,65 +1,71 @@
-h1.title-application {
-    text-align: center;
-    font-size: 18pt;
-    color: #334433;
-    text-shadow: #dddddd -3px 3px 1px;
-}
-
-.form-create-note {
-    width: 400px;
-    margin: 15px;
-    padding: 5px;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.form-element {
-    width: auto;
-    padding: 5px;
-}
-
-.form-element div:first-child {
-    vertical-align: top;
-    display: inline-block;
-    width: 50px;
-}
-
-textarea {
-    height: 200px;
-}
-
-.form-element input, textarea {
-    padding: 2px;
-    width: 300px;
-}
-
-.form-element input:focus, textarea:focus {
-    box-shadow: #9999ff 1px 1px 1px;
-}
-
-
-.form-element input.form-button {
-    width: 150px;
-    background-color: #9977bb;
+.form-create-event {
     margin: 0 auto;
-    font-size: 12pt;
-    display: block;
+    width: 90%;
 }
 
-.form-element input.form-button:focus {
-    box-shadow: #9999ff 1px 1px 1px;
+.button-create-note {
+    width: 200px;
 }
 
 .panel-all-notes {
-    display: inline-block;
-    width: 700px;
+    margin-left: 0 auto;
+    display: block;
+    width: 90%;
 }
 
-li {
+.panel-all-notes ul {
+    margin: 0px;
+    padding: 5px;
+}
+
+.navbar-notes {
+    float: left;
+    padding: 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 50px;
+    color: #777;
+    margin-left: -15px;
+}
+
+.navbar-notes a:focus, a:hover {
+    text-decoration: none;
+    color: #5e5e5e;
+    background-color: transparent;
+}
+
+.form-label {
+    font-size: 15pt;
+}
+
+li.note-view {
+    vertical-align: top;
     display: inline-block;
-    width: 250px;
-    border: 1px solid gray;
-    padding: 10px;
-    background-color: #ddaaff;
+    width: 45%;
+    border: 2px solid #ccc;
+    background-color: #ddd;
     margin: 5px;
+}
+
+li.note-view h4 {
+    color : rgb(103, 1, 107);
+    margin: 0px;
+    padding: 5px 10px 5px 5px;
+    border-bottom: 1px solid #bbb;
+}
+
+li.note-view p {
+    margin-top: 5px;
+    margin-left: 2px;
+    padding: 3px 10px 0px 3px;
+}
+
+footer.footer {
+    background-color: white;
+    opacity: 0.5;
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
 }

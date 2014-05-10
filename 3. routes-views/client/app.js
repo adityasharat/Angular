@@ -67,7 +67,7 @@
             note = NotesService.resource.get({
                 id : $routeParams.noteid
             }).$promise.then(function (data) {
-                $scope.mode = 'Edit';   // change the text of the button to 'Edit Note'
+                $scope.mode = 'Update';   // change the text of the button to 'Edit Note'
                 $scope.note = data;
             });
         } else {
@@ -82,7 +82,7 @@
                 return;
             }
 
-            if ($scope.note.id) {
+            if ($scope.note.id) {   // update is has id PUT
                 NotesService.resource
                     .update({id : $scope.note.id}, $scope.note)
                     .$promise.then(function () {
@@ -90,7 +90,7 @@
                         $scope.note.title = '';
                         $scope.mode = 'Add';
                     });
-            } else {
+            } else {    // save if it has not id POST
                 angular.extend(note, $scope.note);
                 note.$save(function (data) {
                     $scope.note.body = '';

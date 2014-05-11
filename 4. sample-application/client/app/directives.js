@@ -1,4 +1,4 @@
-(function (angular) {
+(function (angular, $) {
 
     var Events = angular.module('Events');
 
@@ -65,4 +65,27 @@
             // link: function($scope, iElm, iAttrs, controller) {}
         };
     });
-}(angular));
+
+    Events.directive('timerange', function () {
+        // Runs during compile
+        return {
+            name : 'timerange',
+            restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+            link: function($scope, iElm, iAttrs, controller) {
+                var $element = $(iElm);
+
+                var time = $element.find('.time').timepicker({
+                    showDuration: true,
+                    timeFormat: 'g:i A'
+                });
+
+                $element.find('.date').datepicker({
+                    format: 'm/d/yyyy',
+                    autoclose: true
+                });
+
+                $element.datepair();
+            }
+        };
+    });
+}(angular, $));

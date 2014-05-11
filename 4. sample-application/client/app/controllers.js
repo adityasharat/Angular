@@ -18,7 +18,8 @@
                 $scope.event = data;
             });
         } else {
-            event = new EventsService.resource(EventsService.new());
+            $scope.event = EventsService.new();
+            event = new EventsService.resource($scope.event);
         }
 
         $scope.saveEvent = function () {

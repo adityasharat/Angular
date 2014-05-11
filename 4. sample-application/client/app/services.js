@@ -13,10 +13,10 @@
         promise.new = function () {
             return {
                 title : '',
-                startDate : '',
-                startTime : '',
-                endDate : '',
-                endTime : '',
+                startDate : new Date().toLocaleDateString(),
+                startTime : '12:00 AM',
+                endDate : new Date().toLocaleDateString(),
+                endTime : '12:00 AM',
                 host : '',
                 location : ''
             };

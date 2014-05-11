@@ -16,7 +16,7 @@
                 startDate : new Date().toLocaleDateString(),
                 startTime : '12:00 AM',
                 endDate : new Date().toLocaleDateString(),
-                endTime : '12:00 AM',
+                endTime : '1:00 AM',
                 host : '',
                 location : ''
             };

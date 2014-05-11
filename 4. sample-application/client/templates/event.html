@@ -1,6 +1,16 @@
 <li class="note-view" ng-click="click()">
     <div>
         <h4>{{ event.title}}</h4>
-        <p>{{ event.body }}</p>
+
+        <p>
+            <span>{{ event.startDate }}</span><span>-</span><span>{{ event.startTime }}</span>
+            <span>to</span>
+            <span>{{ event.endDate }}</span><span>-</span><span>{{ event.endTime }}</span>
+        </p>
+
+        <p>
+            <span>Hosted : </span><span>{{ event.host }}</span><br>
+            <span>When : </span><span>{{ event.location }}</span>
+        </p>
     </div>
 </li>

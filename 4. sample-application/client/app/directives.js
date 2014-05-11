@@ -9,7 +9,7 @@
             // priority: 1,
             // terminal: true,
             // scope: {}, // {} = isolate, true = child, false/undefined = no change
-            controller: function($scope, $element, $attrs, $transclude) {},
+            //controller: function ($scope, $element, $attrs, $transclude) {},
             // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
             restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
             // template: '',
@@ -66,26 +66,62 @@
         };
     });
 
-    Events.directive('timerange', function () {
+    Events.directive('datepair', function () {
         // Runs during compile
         return {
-            name : 'timerange',
+            name : 'datepair',
+            // require : 'ngModel',
             restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
-            link: function($scope, iElm, iAttrs, controller) {
-                var $element = $(iElm);
-
-                var time = $element.find('.time').timepicker({
-                    showDuration: true,
-                    timeFormat: 'g:i A'
+            link: function ($scope, iElm, iAttrs, controller) {
+                $(function () {
+                    $(iElm).datepair();
                 });
-
-                $element.find('.date').datepicker({
-                    format: 'm/d/yyyy',
-                    autoclose: true
-                });
-
-                $element.datepair();
             }
         };
     });
+
+    Events.directive('datepicker', function () {
+        // Runs during compile
+        return {
+            name : 'datepicker',
+            require : 'ngModel',
+            restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+            link: function ($scope, iElm, iAttrs, controller) {
+
+                $(function () {
+                    $(iElm).datepicker({
+                        format: 'm/d/yyyy',
+                        autoclose: true,
+                    }).on('changeDate', function (event) {
+                        $scope.$apply(function () {
+                            controller.$setViewValue(event.date.toLocaleDateString());
+                        });
+                    });
+                });
+            }
+        };
+    });
+
+    Events.directive('timepicker', function () {
+        // Runs during compile
+        return {
+            name : 'timepicker',
+            require : 'ngModel',
+            restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+            link: function ($scope, iElm, iAttrs, controller) {
+
+                $(function () {
+                    $(iElm).timepicker({
+                        showDuration: true,
+                        timeFormat: 'g:i A'
+                    }).on('changeTime', function (event) {
+                        $scope.$apply(function () {
+                            controller.$setViewValue(event.target.value);
+                        });
+                    });
+                });
+            }
+        };
+    });
+
 }(angular, $));

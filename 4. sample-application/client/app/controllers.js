@@ -28,15 +28,15 @@
                 EventsService.resource
                     .update({id : $scope.event.id}, $scope.event)
                     .$promise.then(function () {
-                        $scope.event.body = '';
-                        $scope.event.title = '';
+                        $scope.event = EventsService.new();
                         $scope.mode = 'Publish';
+                        event = new EventsService.resource($scope.event);
                     });
             } else {    // save if it has not id POST
                 angular.extend(event, $scope.event);
                 event.$save(function () {
-                    $scope.event.body = '';
-                    $scope.event.title = '';
+                    $scope.event = EventsService.new();
+                    event = new EventsService.resource($scope.event);
                 });
             }
         };

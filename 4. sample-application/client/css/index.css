@@ -19,14 +19,13 @@
 }
 
 .panel-all-notes {
-    margin-left: 0 auto;
+    margin: 0 auto;
     display: block;
     width: 90%;
 }
 
 .panel-all-notes ul {
     margin: 0px;
-    padding: 5px;
 }
 
 .navbar-notes {
@@ -50,12 +49,44 @@
 }
 
 li.note-view {
+    position: relative;
     vertical-align: top;
     display: inline-block;
     width: 45%;
-    border: 2px solid #ccc;
-    background-color: #ddd;
-    margin: 5px;
+    background-color: #ffc;
+    margin: 15px;
+    padding: 0.25em;
+
+    -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+    -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+}
+
+/* li.note-view:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 20px 20px 0;
+    border-style: solid;
+    border-color: #fff #fff #ffc #ffc;
+    background: rgba(0,0,0,0.0);
+    display: block;
+    width: 0;
+    Optional: shadow;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+} */
+
+li.note-view:hover, li.note-view:focus {
+    -moz-box-shadow:10px 10px 10px rgba(0,0,0,.5);
+    -webkit-box-shadow:10px 10px 10px rgba(0,0,0,.5);
+    box-shadow:10px 10px 10px rgba(0,0,0,.5);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    z-index:5;
 }
 
 li.note-view h4 {

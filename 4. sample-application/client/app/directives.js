@@ -8,20 +8,20 @@
             name: 'header',
             // priority: 1,
             // terminal: true,
-            // scope: {}, // {} = isolate, true = child, false/undefined = no change
-            controller: function ($scope, $element, $attrs, $transclude, $location) {
-                $scope.isActive = function (viewLocation) {
-                    return viewLocation === $location.path();
-                };
-            },
+            scope: {
+                view : '='
+            }, // {} = isolate, true = child, false/undefined = no change
+            controller: function ($scope, $element, $attrs, $transclude, $location) {},
             // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
             restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
             // template: '',
             templateUrl: 'templates/header.html',
             replace: true,
-            // transclude: true,
+            transclude: true,
             // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-            //link: function($scope, iElm, iAttrs, controller) {}
+            link: function($scope, iElm, iAttrs, controller) {
+                iElm.find('li[data-view=' + iAttrs.view + ']').addClass('active');
+            }
         };
     });
 

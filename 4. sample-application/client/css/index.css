@@ -4,6 +4,17 @@
     text-align: center;
 }
 
+.icon-edit-event {
+    width: 16px;
+    height: 16px;
+    background: url('../img/file_edit.png');
+    background-size: 100%;
+    position: absolute;
+    top: 3px;
+    right: 1px;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
 .form-create-event {
     margin: 0 auto;
     width: 90%;

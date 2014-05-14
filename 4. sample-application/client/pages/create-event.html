@@ -44,6 +44,18 @@
                         ng-click="saveEvent()">
                     {{ mode }} Event
                 </button>
+                <button type="submit"
+                        class="btn btn-default button-create-note"
+                        ng-click="discardEvent()"
+                        ng-if="!!event.id == false">
+                    Discard Event
+                </button>
+                <button type="submit"
+                        class="btn btn-default button-create-note"
+                        ng-click="cancelEvent()"
+                        ng-if="event.id">
+                    Cancel Event
+                </button>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
 
     var Events = angular.module('Events');
 
-    Events.controller('CreateEvent', function ($scope, $routeParams, EventsService) {
+    Events.controller('CreateEvent', function ($scope, $routeParams, EventsService, $location) {
         var event;
 
         $scope.mode = 'Publish';
@@ -39,6 +39,15 @@
                     event = new EventsService.resource($scope.event);
                 });
             }
+        };
+
+        $scope.discardEvent = function () {
+            // add any clean up code if required
+            $location.path('/allevents');
+        };
+
+        $scope.cancelEvent = function () {
+            console.log('Event will be cancelled');
         };
     });
 

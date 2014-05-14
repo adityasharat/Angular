@@ -18,7 +18,8 @@
                 endDate : new Date().toLocaleDateString(),
                 endTime : '1:00 AM',
                 host : '',
-                location : ''
+                location : '',
+                status : 'new'
             };
         };
 

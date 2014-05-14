@@ -53,7 +53,7 @@
                 <button type="submit"
                         class="btn btn-default button-create-note"
                         ng-click="cancelEvent()"
-                        ng-if="event.id">
+                        ng-if="event.id && event.status !== 'cancelled'">
                     Cancel Event
                 </button>
             </div>

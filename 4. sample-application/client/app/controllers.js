@@ -47,7 +47,8 @@
         };
 
         $scope.cancelEvent = function () {
-            console.log('Event will be cancelled');
+            $scope.event.status = 'cancelled';
+            $scope.saveEvent();
         };
     });
 

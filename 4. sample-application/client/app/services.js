@@ -3,7 +3,7 @@
     var Events = angular.module('Events');
 
     Events.factory('EventsService', function ($resource, $q) {
-        var resource = $resource('/data/events/:id', null, { update: { method: 'PUT' } }),
+        var resource = $resource('/data/events/:id', {id : '@id'}, { update: { method: 'PUT' } }),
             deferred = $q.defer(),
             events = [],
             getPromise,

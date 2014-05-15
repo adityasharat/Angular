@@ -33,8 +33,11 @@
             // terminal: true,
             //scope: {}, // {} = isolate, true = child, false/undefined = no change
             controller: function ($scope, $element, $attrs, $transclude, EventsService, $timeout) {
+                var eventsPromise = EventsService.getPromise();
+
                 $scope.events = EventsService.all();
-                EventsService.then(null, null, function (events) {
+
+                eventsPromise.then(null, null, function (events) {
                     $scope.events = events;
                 });
             },

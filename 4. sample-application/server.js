@@ -37,18 +37,39 @@ app.post('/data/events', function (req, res) {
     var event = req.body;
 
     event.id = events.length + 1; // set id
+
+    event.status.isNew = false;
+    event.status.isPublished = true;
+    event.status.isCancelled = false;
+
     events.push(event);   // add event to collection
 
-    res.send(event, 200);    // send the event back
+    res.send(event[event.id -1], 200);    // send the event back
 });
 
 app.put('/data/events/:id', function (req, res) {
     var id = req.params.id,
         event = req.body;
 
+    event.status.isNew = false;
+    event.status.isPublished = true;
+    event.status.isCancelled = false;
+
     events[id - 1] = event;
 
-    res.send(event, 200);    // send the event back
+    res.send(events[id - 1], 200);    // send the event back
+});
+
+app.delete('/data/events/:id', function (req, res) {
+    var id = req.params.id,
+        event;
+
+    event = events[id - 1];
+    event.status.isNew = false;
+    event.status.isPublished = true;
+    event.status.isCancelled = true;
+
+    res.send(events[id - 1], 200);    // send the event back
 });
 
 /* Route: all others go to the defult client webapp for now */

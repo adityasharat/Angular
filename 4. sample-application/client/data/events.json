@@ -7,7 +7,10 @@
         "endTime": "5:00 AM",
         "host": "Host 1",
         "location": "Location 1",
-        "id": 1
+        "id": 1,
+        "status" : {
+            "isPublished" : true
+        }
     },
     {
         "title": "Test Event 2",
@@ -17,7 +20,10 @@
         "endTime": "12:00 AM",
         "host": "Host 2",
         "location": "Location 2",
-        "id": 2
+        "id": 2,
+        "status" : {
+            "isPublished" : true
+        }
     },
     {
         "title": "Test Event 3",
@@ -27,7 +33,10 @@
         "endTime": "12:00 AM",
         "host": "Host 3",
         "location": "Location 3",
-        "id": 3
+        "id": 3,
+        "status" : {
+            "isPublished" : true
+        }
     },
     {
         "title": "Test Event 4",
@@ -37,7 +46,10 @@
         "endTime": "12:00 AM",
         "host": "Host 4",
         "location": "Location 4",
-        "id": 4
+        "id": 4,
+        "status" : {
+            "isPublished" : true
+        }
     },
     {
         "title": "Test Event 5",
@@ -47,7 +59,10 @@
         "endTime": "12:00 AM",
         "host": "Host 5",
         "location": "Location 5",
-        "id": 5
+        "id": 5,
+        "status" : {
+            "isPublished" : true
+        }
     },
     {
         "title": "Test Event 6",
@@ -57,6 +72,9 @@
         "endTime": "12:00 AM",
         "host": "Host 6",
         "location": "Location 6",
-        "id": 6
+        "id": 6,
+        "status" : {
+            "isPublished" : true
+        }
     }
 ]

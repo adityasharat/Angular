@@ -41,19 +41,26 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit"
                         class="btn btn-primary button-create-note"
-                        ng-click="saveEvent()">
-                    {{ mode }} Event
+                        ng-click="saveEvent()"
+                        ng-if="event.status.isNew">
+                    Publish Event
+                </button>
+                <button type="submit"
+                        class="btn btn-primary button-create-note"
+                        ng-click="saveEvent()"
+                        ng-if="event.status.isPublished">
+                    Update Event
                 </button>
                 <button type="submit"
                         class="btn btn-default button-create-note"
                         ng-click="discardEvent()"
-                        ng-if="!!event.id == false">
+                        ng-if="event.status.isNew">
                     Discard Event
                 </button>
                 <button type="submit"
                         class="btn btn-default button-create-note"
                         ng-click="cancelEvent()"
-                        ng-if="event.id && event.status !== 'cancelled'">
+                        ng-if="event.status.isPublished && !event.status.isCancelled">
                     Cancel Event
                 </button>
             </div>

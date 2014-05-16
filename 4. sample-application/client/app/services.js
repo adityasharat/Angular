@@ -34,7 +34,7 @@
                 endTime : '1:00 AM',
                 host : '',
                 location : '',
-                status : { isNew : true }
+                status : { isNew : true, isCancelled : false, isPublished : false }
             };
         };
 

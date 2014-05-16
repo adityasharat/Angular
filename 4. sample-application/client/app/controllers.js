@@ -3,10 +3,7 @@
     var Events = angular.module('Events');
 
     Events.controller('CreateEvent', function ($scope, $routeParams, EventsService, $location) {
-        var event,
-            EventResource = EventsService.getResource();
-
-        $scope.mode = 'Publish';
+        var EventResource = EventsService.getResource();
 
         // if the route has a event id open the view in edit mode.
         // fetch the event from the server
@@ -38,8 +35,9 @@
         };
 
         $scope.cancelEvent = function () {
-            $scope.event.status = 'cancelled';
-            $scope.saveEvent();
+            $scope.event.$delete(function () {
+                $scope.event = new EventResource(EventsService.getNew());
+            });
         };
     });
 

@@ -5,6 +5,10 @@
     Events.controller('CreateEvent', function ($scope, $routeParams, EventsService, $location) {
         var EventResource = EventsService.getResource();
 
+        $scope.initialize = function () {
+            $scope.event = new EventResource(EventsService.getNew());
+        };
+
         // if the route has a event id open the view in edit mode.
         // fetch the event from the server
         // display it in the view
@@ -13,31 +17,23 @@
                 id : $routeParams.id
             });
         } else {
-            $scope.event = new EventResource(EventsService.getNew());
+            $scope.initialize();
         }
 
         $scope.saveEvent = function () {
+            $scope.event.$save($scope.initialize);
+        };
 
-            if ($scope.event.id) {   // update is has id PUT
-                $scope.event.$update(function () {
-                    $scope.event = new EventResource(EventsService.getNew());
-                });
-            } else {
-                $scope.event.$save(function () {
-                    $scope.event = new EventResource(EventsService.getNew());
-                });
-            }
+        $scope.updateEvent = function () {
+            $scope.event.$update($scope.initialize);
         };
 
         $scope.discardEvent = function () {
-            // add any clean up code if required
             $location.path('/allevents');
         };
 
         $scope.cancelEvent = function () {
-            $scope.event.$delete(function () {
-                $scope.event = new EventResource(EventsService.getNew());
-            });
+            $scope.event.$delete($scope.initialize);
         };
     });
 

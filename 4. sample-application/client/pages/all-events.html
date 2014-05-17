@@ -1,4 +1,21 @@
 <div>
     <header view="allevents"></header>
-    <events></evemts>
+    <div class="panel-all-notes">
+        <div class="events-filter-bar">
+            <input name="show-cancelled-checkbox" class="align-top" type="checkbox" ng-model="filters.isCancelled">
+            <label for="show-cancelled-checkbox"> Cancelled Events</label>
+        </div>
+        <div class="events-toggle-view-bar">
+            <fieldset>
+                <input ng-model="eventsViewType" id="board" name="toggle-view" type="radio" value="board">
+                <label>Board</label>
+                <input ng-model="eventsViewType" id="table" name="toggle-view" type="radio" value="table">
+                <label>Table</label>
+            </fieldset>
+        </div>
+
+        <events-board-view ng-if="eventsViewType == 'board'"></events-board-view>
+
+        <events-table-view ng-if="eventsViewType == 'table'"></events-table-view>
+    </div>
 </div>

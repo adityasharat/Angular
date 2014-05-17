@@ -45,6 +45,8 @@
             isCancelled : false
         };
 
+        $scope.eventsViewType = 'board';
+
         $scope.filterEvents = function (filters) {
             return function (event) {
                 if (event.status.isCancelled && !filters.isCancelled) {

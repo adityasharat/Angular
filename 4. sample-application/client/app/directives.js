@@ -25,17 +25,17 @@
         };
     });
 
-    Events.directive('events', function () {
+    Events.directive('eventsBoardView', function () {
         // Runs during compile
         return {
-            name: 'events',
+            name: 'eventsBoardView',
             // priority: 1,
             // terminal: true,
             // scope: {}, // {} = isolate, true = child, false/undefined = no change
             // controller: function ($scope, $element, $attrs, $transclude, EventsService, $timeout) {},
             // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
             restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-            templateUrl: 'templates/events.html',
+            templateUrl: 'templates/events-board-view.html',
             replace: true,
             // transclude: true,
             // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
@@ -43,17 +43,53 @@
         };
     });
 
-    Events.directive('event', function () {
+    Events.directive('eventPageView', function () {
         // Runs during compile
         return {
-            name: 'event',
+            name: 'eventPageView',
             // priority: 1,
             // terminal: true,
             // scope: {}, // {} = isolate, true = child, false/undefined = no change
             // controller: function ($rootScope, $scope, $location, $element, $attrs, $transclude) {},
-            require: '^events', // Array = multiple requires, ? = optional, ^ = check parent elements
+            require: '^eventsBoardView', // Array = multiple requires, ? = optional, ^ = check parent elements
             restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-            templateUrl: 'templates/event.html',
+            templateUrl: 'templates/event-page-view.html',
+            replace: true,
+            // transclude: true,
+            // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+            // link: function($scope, iElm, iAttrs, controller) {}
+        };
+    });
+
+    Events.directive('eventsTableView', function () {
+        // Runs during compile
+        return {
+            name: 'eventsTableView',
+            // priority: 1,
+            // terminal: true,
+            // scope: {}, // {} = isolate, true = child, false/undefined = no change
+            // controller: function ($scope, $element, $attrs, $transclude, EventsService, $timeout) {},
+            // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+            restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+            templateUrl: 'templates/events-board-view.html',
+            replace: true,
+            // transclude: true,
+            // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+            // link: function($scope, iElm, iAttrs, controller) {}
+        };
+    });
+
+    Events.directive('eventRowView', function () {
+        // Runs during compile
+        return {
+            name: 'eventRowView',
+            // priority: 1,
+            // terminal: true,
+            // scope: {}, // {} = isolate, true = child, false/undefined = no change
+            // controller: function ($rootScope, $scope, $location, $element, $attrs, $transclude) {},
+            require: '^eventsTableView', // Array = multiple requires, ? = optional, ^ = check parent elements
+            restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+            templateUrl: 'templates/event-row-view.html',
             replace: true,
             // transclude: true,
             // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),

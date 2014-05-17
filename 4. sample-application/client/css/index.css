@@ -29,8 +29,16 @@
 }
 
 .events-filter-bar {
+    display: inline-block;
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
+}
+
+.events-toggle-view-bar {
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
 
 .time-range .form-control {
@@ -43,6 +51,7 @@
 }
 
 .panel-all-notes {
+    position: relative;
     margin: 0 auto;
     display: block;
     width: 90%;
@@ -70,6 +79,10 @@
 
 .form-label {
     font-size: 15pt;
+}
+
+ul {
+    padding: 0px;
 }
 
 li.note-view {

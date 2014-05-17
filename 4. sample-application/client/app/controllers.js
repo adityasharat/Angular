@@ -37,7 +37,21 @@
         };
     });
 
-    Events.controller('AllEvents', function (EventsService) {
-        EventsService.fetch();
+    Events.controller('AllEvents', function ($scope, EventsService) {
+
+        $scope.events = EventsService.fetch();
+
+        $scope.filters = {
+            isCancelled : false
+        };
+
+        $scope.filterEvents = function (filters) {
+            return function (event) {
+                if (event.status.isCancelled && !filters.isCancelled) {
+                    return false;
+                }
+                return true;
+            };
+        };
     });
 }(angular));

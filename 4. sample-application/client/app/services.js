@@ -5,13 +5,10 @@
     Events.factory('EventsService', function ($resource, $q) {
         var resource = $resource('/data/events/:id', {id : '@id'}, { update: { method: 'PUT' } }),
             deferred = $q.defer(),
-            events = [],
             getPromise,
             getResource,
-            all,
             getNew,
-            fetch,
-            add;
+            fetch;
 
         getPromise = function () {
             return deferred.promise;
@@ -19,10 +16,6 @@
 
         getResource = function () {
             return resource;
-        };
-
-        all = function () {
-            return events;
         };
 
         getNew = function () {
@@ -39,31 +32,14 @@
         };
 
         fetch = function () {
-            resource.query().$promise.then(function (data) {
-                events = data;
-                deferred.notify(events);
-            });
-            return this;
-        };
-
-        add = function (event) {
-            var newEvent = new resource(event);
-
-            newEvent.$save(function () {
-                events.push(newEvent);
-                deferred.notify(events);
-            });
-
-            return this;
+            return resource.query();
         };
 
         return {
             getPromise : getPromise,
             getResource : getResource,
-            all : all,
             getNew : getNew,
-            fetch : fetch,
-            add : add
+            fetch : fetch
         };
     });
 }(angular));

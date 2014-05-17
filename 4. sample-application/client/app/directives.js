@@ -11,7 +11,7 @@
             scope: {
                 view : '='
             },
-            controller: function ($scope, $element, $attrs, $transclude, $location) {},
+            //controller: function ($scope, $element, $attrs, $transclude, $location) {},
             // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
             restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
             // template: '',
@@ -31,16 +31,8 @@
             name: 'events',
             // priority: 1,
             // terminal: true,
-            //scope: {}, // {} = isolate, true = child, false/undefined = no change
-            controller: function ($scope, $element, $attrs, $transclude, EventsService, $timeout) {
-                var eventsPromise = EventsService.getPromise();
-
-                $scope.events = EventsService.all();
-
-                eventsPromise.then(null, null, function (events) {
-                    $scope.events = events;
-                });
-            },
+            // scope: {}, // {} = isolate, true = child, false/undefined = no change
+            // controller: function ($scope, $element, $attrs, $transclude, EventsService, $timeout) {},
             // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
             restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
             templateUrl: 'templates/events.html',

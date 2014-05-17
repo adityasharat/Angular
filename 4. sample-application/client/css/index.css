@@ -4,6 +4,14 @@
     text-align: center;
 }
 
+.align-top {
+    vertical-align: top;
+}
+
+.red {
+    color : red;
+}
+
 .icon-edit-event {
     width: 20px;
     height: 20px;
@@ -16,6 +24,11 @@
 }
 
 .form-create-event {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.events-filter-bar {
     margin: 0 auto;
     width: 90%;
 }

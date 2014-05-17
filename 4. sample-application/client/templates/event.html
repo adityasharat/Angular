@@ -5,7 +5,7 @@
     <div>
         <h4>
             <span>{{ event.title }}</span>
-            <small ng-if="event.status.isCancelled"> - Cancelled</small>
+            <small class="red" ng-if="event.status.isCancelled"> - Cancelled</small>
         </h4>
 
         <p>

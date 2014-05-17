@@ -22,7 +22,8 @@
         "location": "Location 2",
         "id": 2,
         "status" : {
-            "isPublished" : true
+            "isPublished" : true,
+            "isCancelled" : true
         }
     },
     {
@@ -61,7 +62,8 @@
         "location": "Location 5",
         "id": 5,
         "status" : {
-            "isPublished" : true
+            "isPublished" : true,
+            "isCancelled" : true
         }
     },
     {

@@ -40,12 +40,26 @@ module.exports = function (grunt) {
          */
         copy : {
             dev : {
-                files : [{
-                    expand : true,
-                    cwd : 'src/',
-                    src : ['**', '!**/sass/**', '!**/*.js'],
-                    dest : 'dist/'
-                }]
+                files : [
+                    {
+                        expand : true,
+                        cwd : 'src/',
+                        src : ['**/*.*', '!**/sass/**'],    //, '!**/*.js'
+                        dest : 'dist/'
+                    },
+                    {
+                        expand : true,
+                        cwd : 'lib/dev',
+                        src : ['**'],
+                        dest : 'dist/client/lib'
+                    },
+                    {
+                        expand : true,
+                        cwd : 'images',
+                        src : ['**'],
+                        dest : 'dist/client/images'
+                    }
+                ]
             }
         }
     });

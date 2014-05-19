@@ -30,6 +30,16 @@ module.exports = function (grunt) {
                     environment: 'development',
                     outputStyle : 'expanded'
                 }
+            },
+            dist : {
+                options : {
+                    sassDir: 'src/client/sass',
+                    cssDir: 'dist/client/css',
+                    imagesDir: 'images',
+                    javascriptsDir: 'src',
+                    environment: 'development',
+                    outputStyle : 'compressed'
+                }
             }
         },
 

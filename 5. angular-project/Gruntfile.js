@@ -28,17 +28,17 @@ module.exports = function (grunt) {
                     imagesDir: 'images',
                     javascriptsDir: 'src',
                     environment: 'development',
-                    outputStyle : 'expanded'
+                    outputStyle: 'expanded'
                 }
             },
-            dist : {
-                options : {
+            dist: {
+                options: {
                     sassDir: 'src/client/sass',
                     cssDir: 'dist/client/css',
                     imagesDir: 'images',
                     javascriptsDir: 'src',
                     environment: 'development',
-                    outputStyle : 'compressed'
+                    outputStyle: 'compressed'
                 }
             }
         },
@@ -48,28 +48,42 @@ module.exports = function (grunt) {
          * grunt-contrib-copy
          * copies the files from src to dist
          */
-        copy : {
-            dev : {
-                files : [
-                    {
-                        expand : true,
-                        cwd : 'src/',
-                        src : ['**/*.*', '!**/sass/**'],    //, '!**/*.js'
-                        dest : 'dist/'
-                    },
-                    {
-                        expand : true,
-                        cwd : 'lib/dev',
-                        src : ['**'],
-                        dest : 'dist/client/lib'
-                    },
-                    {
-                        expand : true,
-                        cwd : 'images',
-                        src : ['**'],
-                        dest : 'dist/client/images'
-                    }
-                ]
+        copy: {
+            dev: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/',
+                    src: ['**/*.*', '!**/sass/**'], //, '!**/*.js'
+                    dest: 'dist/'
+                }, {
+                    expand: true,
+                    cwd: 'lib/dev',
+                    src: ['**'],
+                    dest: 'dist/client/lib'
+                }, {
+                    expand: true,
+                    cwd: 'images',
+                    src: ['**'],
+                    dest: 'dist/client/images'
+                }]
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/',
+                    src: ['**/*.*', '!**/sass/**', '!**/*.js'], // do not copy js files, we will use uglify in dist
+                    dest: 'dist/'
+                }, {
+                    expand: true,
+                    cwd: 'lib/dev',
+                    src: ['**'],
+                    dest: 'dist/client/lib'
+                }, {
+                    expand: true,
+                    cwd: 'images',
+                    src: ['**'],
+                    dest: 'dist/client/images'
+                }]
             }
         }
     });

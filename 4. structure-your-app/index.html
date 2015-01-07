@@ -29,7 +29,8 @@
                 <input type="text" name="number" data-ng-model="app.person.number" required/>
             </div>
 
-            <span ng-show="personForm.$invalid">Please fill the form</span>
+            <label class="invalid" ng-show="personForm.$invalid">Please fill the form</label>
+            <label class="valid" ng-show="personForm.$valid">form filled, and the person</label>
             <button type="submit" data-ng-click="app.addPerson()">Add Person</button>
         </form>
 

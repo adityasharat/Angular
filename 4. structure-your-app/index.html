@@ -14,17 +14,22 @@
 
         <!-- notice the name of the form, check it out in the controller's addPerson emthod -->
         <form name="personForm" class="person-form">
-            <label for="name">Name</label>
-            <input type="text" name="name" data-ng-model="app.person.name" required/>
-            <br>
-            <label for="name">Age</label>
-            <input type="number" min="1" name="age" data-ng-model="app.person.age" required/>
-            <br>
-            <label for="name">Number</label>
-            <input type="text" name="number" data-ng-model="app.person.number" required/>
-            <br>
+            <div class="form-row">
+                <label for="name">Name</label>
+                <input type="text" name="name" data-ng-model="app.person.name" required/>
+            </div>
+
+            <div class="form-row">
+                <label for="name">Age</label>
+                <input type="number" min="1" name="age" data-ng-model="app.person.age" required/>
+            </div>
+
+            <div class="form-row">
+                <label for="name">Number</label>
+                <input type="text" name="number" data-ng-model="app.person.number" required/>
+            </div>
+
             <span ng-show="personForm.$invalid">Please fill the form</span>
-            <br>
             <button type="submit" data-ng-click="app.addPerson()">Add Person</button>
         </form>
 

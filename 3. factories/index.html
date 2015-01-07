@@ -113,14 +113,15 @@
             this.person = {};
             this.list = ListFactory.query();
             this.deletePerson = function (index) {
-                this.list.splice(index, 1);
+                //this.list.splice(index, 1);
+                ListFactory.remove(index);
             };
             this.addPerson = function () {
                 //checking form validations
                 if ($scope.personForm.$invalid) {   // if invalid then dont add the person
                     return;
                 }
-                this.list.push(this.person);
+                ListFactory.add(this.person);
                 this.person = {};
             };
         }]);

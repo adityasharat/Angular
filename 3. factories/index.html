@@ -68,10 +68,8 @@
         */
         var ListsApp = angular.module('lists', []);
 
-        ListsApp.controller('appCtrl', ['$scope', function($scope){
-            this.title = "The Lists App"; // to check this see the title of the webpage
-            this.person = {};
-            this.list = [{
+        ListsApp.factory('ListFactory', function(){
+            var list = [{
                 name: 'John',
                 age: '23',
                 number: '11-111-11111'
@@ -88,6 +86,32 @@
                 age: '24',
                 number: '44-444-44444'
             }];
+
+            function query() {
+                return list;
+            }
+
+            function add(item) {
+                list.push(item);
+                return list;
+            }
+
+            function remove(index) {
+                list.splice(index, 1);
+                return list;
+            }
+
+            return {
+                query: query,
+                add: add,
+                remove: remove
+            };
+        });
+
+        ListsApp.controller('appCtrl', ['$scope', 'ListFactory', function($scope, ListFactory){
+            this.title = "The Lists App"; // to check this see the title of the webpage
+            this.person = {};
+            this.list = ListFactory.query();
             this.deletePerson = function (index) {
                 this.list.splice(index, 1);
             };

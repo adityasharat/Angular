@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" data-ng-app="lists" data-ng-controller="appCtrl as app">
+    <!-- data-* is optional, you can use ng-* -->
+
+    <head>
+        <meta charset="UTF-8">
+        <title data-ng-bind="app.title"></title>
+
+        <style>
+            ul {list-style: none;}
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>Lists App</h1>
+
+        <div class="list-view">
+            <ul>
+                <li data-ng-repeat="person in app.list">
+                    <div>
+                        <span>{{$index + 1}}</span>
+                        <!-- $index is the position of the person item in the array -->
+                    </div>
+                    <div>
+                        <span>Name: </span>
+                        <span data-ng-bind="person.name"></span>
+                    </div>
+                    <div>
+                        <span>Age: {{person.age}}</span>
+                    </div>
+                    <div>
+                        <span>Number: </span>
+                        <span data-ng-bind="person.number"></span>
+                    </div>
+                    <div>
+                        <button type="button" data-ng-click="app.deletePerson($index)">Delete</button>
+                    </div>
+                    <br>
+                </li>
+            </ul>
+        </div>
+
+        <!-- notice the name of the form, check it out in the controller's addPerson emthod -->
+        <form name="personForm" class="person-form">
+            <label for="name">Name</label>
+            <input type="text" name="name" data-ng-model="app.person.name" required/>
+            <br>
+            <label for="name">Age</label>
+            <input type="number" min="1" name="age" data-ng-model="app.person.age" required/>
+            <br>
+            <label for="name">Number</label>
+            <input type="text" name="number" data-ng-model="app.person.number" required/>
+            <br>
+            <span ng-show="personForm.$invalid">Please fill the form</span>
+            <br>
+            <button type="submit" data-ng-click="app.addPerson()">Add Person</button>
+        </form>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+    </body>
+
+    <script>
+        /**
+        * Application Module
+        * The root module of the application
+        */
+        var ListsApp = angular.module('lists', []);
+
+        ListsApp.factory('ListFactory', function(){
+            var list = [{
+                name: 'John',
+                age: '23',
+                number: '11-111-11111'
+            }, {
+                name: 'Mary',
+                age: '22',
+                number: '22-222-22222'
+            }, {
+                name: 'Jane',
+                age: '26',
+                number: '33-333-33333'
+            }, {
+                name: 'Peter',
+                age: '24',
+                number: '44-444-44444'
+            }];
+
+            function query() {
+                return list;
+            }
+
+            function add(item) {
+                list.push(item);
+                return list;
+            }
+
+            function remove(index) {
+                list.splice(index, 1);
+                return list;
+            }
+
+            return {
+                query: query,
+                add: add,
+                remove: remove
+            };
+        });
+
+        ListsApp.controller('appCtrl', ['$scope', 'ListFactory', function($scope, ListFactory){
+            this.title = "The Lists App"; // to check this see the title of the webpage
+            this.person = {};
+            this.list = ListFactory.query();
+            this.deletePerson = function (index) {
+                //this.list.splice(index, 1);
+                ListFactory.remove(index);
+            };
+            this.addPerson = function () {
+                //checking form validations
+                if ($scope.personForm.$invalid) {   // if invalid then dont add the person
+                    return;
+                }
+                ListFactory.add(this.person);
+                this.person = {};
+            };
+        }]);
+
+    </script>
+
+</html>

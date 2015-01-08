@@ -50,11 +50,12 @@
         return {
             name: 'listsNumber',
             scope: {
-                ngModel: '='
+                ngModel: '=',
+                name: '='
             },
             require: 'ngModel',
             restrict: 'E',
-            template: '<input type="number" min="1" name="age" required/>',
+            template: '<input type="number" min="1" required/>',
             replace: true
         };
     });

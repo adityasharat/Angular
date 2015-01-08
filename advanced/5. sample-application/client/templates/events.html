@@ -1,0 +1,9 @@
+<div class="panel-all-notes">
+    <div class="events-filter-bar">
+        <input id="show-cancelled-checkbox" class="align-top" type="checkbox" ng-model="filters.isCancelled">
+        <label for="show-cancelled-checkbox"> Cancelled Events</label>
+    </div>
+    <ul>
+        <event ng-repeat="event in events | filter:filterEvents(filters)"></event>
+    </ul>
+</div>

@@ -33,10 +33,6 @@
     ListsApp.directive('listsNumber', function () {
         return {
             name: 'listsNumber',
-            /*scope: {
-                ngModel: '=',
-                name: '='
-            },*/
             require: 'ngModel',
             restrict: 'E',
             template: '<input type="number" required/>',

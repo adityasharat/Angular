@@ -7,23 +7,7 @@
     var ListsApp = angular.module('lists', []);
 
     ListsApp.factory('ListFactory', function () {
-        var list = [{
-            name: 'John',
-            age: '23',
-            number: '11-111-11111'
-        }, {
-            name: 'Mary',
-            age: '22',
-            number: '22-222-22222'
-        }, {
-            name: 'Jane',
-            age: '26',
-            number: '33-333-33333'
-        }, {
-            name: 'Peter',
-            age: '24',
-            number: '44-444-44444'
-        }];
+        var list = [];
 
         function query() {
             return list;

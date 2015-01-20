@@ -4,31 +4,15 @@
      * Application Module
      * The root module of the application
      */
-    var ListsApp = angular.module('lists', []);
+    var ListsApp = angular.module('lists', ['ngResource']);
 
-    ListsApp.factory('ListFactory', function () {
-        var list = [];
-
-        function query() {
-            return list;
+    ListsApp.factory('PersonsFactory', ['$resource',
+        function ($resource) {
+            var person;
+            person = new $resource('persons.json');
+            return person;
         }
-
-        function add(item) {
-            list.push(item);
-            return list;
-        }
-
-        function remove(index) {
-            list.splice(index, 1);
-            return list;
-        }
-
-        return {
-            query: query,
-            add: add,
-            remove: remove
-        };
-    });
+    ]);
 
     ListsApp.directive('listsNumber', function () {
         return {
@@ -40,11 +24,11 @@
         };
     });
 
-    ListsApp.controller('appCtrl', ['$scope', 'ListFactory',
-        function ($scope, ListFactory) {
+    ListsApp.controller('appCtrl', ['$scope', 'PersonsFactory',
+        function ($scope, PersonsFactory) {
             this.title = "The Lists App"; // to check this see the title of the webpage
             this.person = {};
-            this.list = ListFactory.query();
+            this.list = PersonsFactory.query();
             this.deletePerson = function (index) {
                 //this.list.splice(index, 1);
                 ListFactory.remove(index);

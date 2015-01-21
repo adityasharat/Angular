@@ -12,15 +12,16 @@
             person = new $resource('persons.json');
 
             function query() {
-                return person.query();
+                list = person.query();
+                return list;
             }
 
             function _delete(id) {
-
+                list.splice(id, 1);
             }
 
             function save(person) {
-
+                list.push(person);
             }
 
             return {
@@ -46,6 +47,7 @@
             this.title = "The Lists App"; // to check this see the title of the webpage
             this.person = {};
             this.list = PersonsFactory.query();
+            console.log(this.list);
 
             this.deletePerson = function (index) {
                 PersonsFactory.delete(index);

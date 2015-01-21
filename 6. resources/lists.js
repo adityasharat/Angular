@@ -10,7 +10,24 @@
         function ($resource) {
             var person;
             person = new $resource('persons.json');
-            return person;
+
+            function query() {
+                return person.query();
+            }
+
+            function _delete(id) {
+
+            }
+
+            function save(person) {
+
+            }
+
+            return {
+                query: query,
+                delete: _delete,
+                save: save
+            };
         }
     ]);
 

@@ -46,15 +46,16 @@
             this.title = "The Lists App"; // to check this see the title of the webpage
             this.person = {};
             this.list = PersonsFactory.query();
+
             this.deletePerson = function (index) {
-                PersonsFactory.remove(index);
+                PersonsFactory.delete(index);
             };
             this.addPerson = function () {
                 //checking form validations
                 if ($scope.personForm.$invalid) { // if invalid then dont add the person
                     return;
                 }
-                PersonsFactory.add(this.person);
+                PersonsFactory.save(this.person);
                 this.person = {};
             };
         }

@@ -46,7 +46,6 @@
             this.title = "The Lists App"; // to check this see the title of the webpage
             this.person = {};
             this.list = PersonsFactory.query();
-            console.log(this.list);
 
             this.deletePerson = function (index) {
                 PersonsFactory.delete(index);

@@ -4,11 +4,11 @@
      * Application Module
      * The root module of the application
      */
-    var ListsApp = angular.module('lists', ['ngResource']);
+    var ListsApp = angular.module('lists', ['ngResource', 'ngRoute']);
 
     ListsApp.factory('PersonsFactory', ['$resource',
         function ($resource) {
-            var person;
+            var person, list;
             person = new $resource('persons.json');
 
             function query() {

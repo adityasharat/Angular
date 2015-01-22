@@ -1,5 +1,4 @@
 (function (angular) {
-
     /**
      * Application Module
      * The root module of the application
@@ -62,5 +61,4 @@
             };
         }
     ]);
-
 }(angular));

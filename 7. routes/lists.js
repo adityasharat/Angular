@@ -74,4 +74,10 @@
             };
         }
     ]);
+
+    ListsApp.controller('CreatePersonCtrl', ['$scope', 'PersonsFactory',
+        function ($scope, PersonsFactory) {
+            this.person = {};
+        }
+    ]);
 }(angular));

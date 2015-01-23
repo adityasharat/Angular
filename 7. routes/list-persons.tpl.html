@@ -1,9 +1,9 @@
-<div class="list-view">
+<div class="list-view" data-ng-controller="PersonsListCtrl as listCtrl">
     <ul>
-        <li data-ng-repeat="person in app.list">
+        <li data-ng-repeat="person in listCtrl.list">
             <div>
                 <span>{{$index + 1}}</span>
-                $index is the position of the person item in the array
+                <!-- $index is the position of the person item in the array -->
             </div>
             <div>
                 <span>Name: </span>
@@ -17,7 +17,7 @@
                 <span data-ng-bind="person.number"></span>
             </div>
             <div>
-                <button type="button" data-ng-click="app.deletePerson($index)">Delete</button>
+                <button type="button" data-ng-click="listCtrl.deletePerson($index)">Delete</button>
             </div>
             <br>
         </li>

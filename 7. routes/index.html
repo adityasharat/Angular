@@ -12,12 +12,14 @@
 
         <h1>Lists App</h1>
 
-        <div class="list-view">
+        <div ng-view></div>
+
+        <!-- <div class="list-view">
             <ul>
                 <li data-ng-repeat="person in app.list">
                     <div>
                         <span>{{$index + 1}}</span>
-                        <!-- $index is the position of the person item in the array -->
+                        $index is the position of the person item in the array
                     </div>
                     <div>
                         <span>Name: </span>
@@ -36,7 +38,7 @@
                     <br>
                 </li>
             </ul>
-        </div>
+        </div> -->
 
         <script src="angular.min.js"></script>
         <script src="angular-resource.min.js"></script>

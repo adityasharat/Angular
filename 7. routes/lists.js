@@ -10,11 +10,11 @@
             .when('/persons', {
                 templateUrl: 'list-persons.tpl.html',
             })
-            .when('/persons/create', {
+            .when('/create', {
                 templateUrl: 'create-person.tpl.html',
             })
             .otherwise({
-                redirectTo: '/persons'
+                redirectTo: '/create'
             });
     });
 
@@ -57,7 +57,6 @@
     ListsApp.controller('appCtrl', ['$scope', 'PersonsFactory',
         function ($scope, PersonsFactory) {
             this.title = "The Lists App"; // to check this see the title of the webpage
-            this.person = {};
             this.list = PersonsFactory.query();
 
             this.deletePerson = function (index) {

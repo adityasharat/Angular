@@ -12,29 +12,6 @@
 
         <h1>Lists App</h1>
 
-        <!-- notice the name of the form, check it out in the controller's addPerson emthod -->
-        <form name="personForm" class="person-form">
-            <div class="form-row">
-                <label for="name">Name</label>
-                <input type="text" name="name" data-ng-model="app.person.name" required/>
-            </div>
-
-            <div class="form-row">
-                <label for="name">Age</label>
-                <!-- look here is a directive -->
-                <data-lists-number min="1" data-ng-model="app.person.age" name="age"/>
-            </div>
-
-            <div class="form-row">
-                <label for="name">Number</label>
-                <input type="text" name="number" data-ng-model="app.person.number" required/>
-            </div>
-
-            <label class="invalid" ng-show="personForm.$invalid">Please fill the form</label>
-            <label class="valid" ng-show="personForm.$valid">form filled, and the person</label>
-            <button type="submit" data-ng-click="app.addPerson()">Add Person</button>
-        </form>
-
         <div class="list-view">
             <ul>
                 <li data-ng-repeat="person in app.list">

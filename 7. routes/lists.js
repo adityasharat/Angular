@@ -10,11 +10,11 @@
             .when('/persons', {
                 templateUrl: 'list-persons.tpl.html',
             })
-            .when('/create', {
+            .when('/persons/create', {
                 templateUrl: 'create-person.tpl.html',
             })
             .otherwise({
-                redirectTo: '/create'
+                redirectTo: '/persons'
             });
     });
 

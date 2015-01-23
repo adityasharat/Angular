@@ -54,11 +54,13 @@
         };
     });
 
-    ListsApp.controller('appCtrl', ['$scope', 'PersonsFactory',
-        function ($scope, PersonsFactory) {
-            this.title = "The Lists App"; // to check this see the title of the webpage
-            this.list = PersonsFactory.query();
+    ListsApp.controller('appCtrl', function () {
+        this.title = "The Lists App"; // to check this see the title of the webpage
+    });
 
+    ListsApp.controller('PersonsListCtrl', ['PersonsFactory',
+        function (PersonsFactory) {
+            this.list = PersonsFactory.query();
             this.deletePerson = function (index) {
                 PersonsFactory.delete(index);
             };

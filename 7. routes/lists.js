@@ -24,6 +24,11 @@
             person = new $resource('persons.json');
 
             function query() {
+                // since we cant write files
+                // lets save in memory
+                if (list) {
+                    return list;
+                }
                 list = person.query();
                 return list;
             }
@@ -78,6 +83,8 @@
                 PersonsFactory.save(this.person);
                 this.person = {};
             };
+
+            PersonsFactory.query();
         }
     ]);
 }(angular));

@@ -63,8 +63,13 @@
             this.deletePerson = function (index) {
                 PersonsFactory.delete(index);
             };
+        }
+    ]);
+
+    ListsApp.controller('CreatePersonCtrl', ['$scope', 'PersonsFactory',
+        function ($scope, PersonsFactory) {
+            this.person = {};
             this.addPerson = function () {
-                console.log(this.personForm);
                 //checking form validations
                 if ($scope.personForm.$invalid) { // if invalid then dont add the person
                     return;
@@ -72,12 +77,6 @@
                 PersonsFactory.save(this.person);
                 this.person = {};
             };
-        }
-    ]);
-
-    ListsApp.controller('CreatePersonCtrl', ['$scope', 'PersonsFactory',
-        function ($scope, PersonsFactory) {
-            this.person = {};
         }
     ]);
 }(angular));

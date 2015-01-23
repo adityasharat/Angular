@@ -5,6 +5,19 @@
      */
     var ListsApp = angular.module('lists', ['ngResource', 'ngRoute']);
 
+    ListsApp.config(function ($routeProvider) {
+        $routeProvider
+            .when('/persons', {
+                templateUrl: 'list-persons.tpl.html',
+            })
+            .when('/persons/create', {
+                templateUrl: 'create-person.tpl.html',
+            })
+            .otherwise({
+                redirectTo: '/persons'
+            });
+    });
+
     ListsApp.factory('PersonsFactory', ['$resource',
         function ($resource) {
             var person, list;
@@ -51,6 +64,7 @@
                 PersonsFactory.delete(index);
             };
             this.addPerson = function () {
+                console.log(this.personForm);
                 //checking form validations
                 if ($scope.personForm.$invalid) { // if invalid then dont add the person
                     return;

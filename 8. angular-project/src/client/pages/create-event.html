@@ -1,0 +1,69 @@
+<div>
+    <header view="createevent"></header>
+    <div class="form-horizontal form-create-event">
+        <div class="form-group">
+            <label for="title" class="form-label col-sm-2 control-label">Title : </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="event.title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="body" class="form-label col-sm-2 control-label">Host : </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="event.host">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="body" class="form-label col-sm-2 control-label">Time : </label>
+            <div class="col-sm-10 time-range" datepair>
+                <input datepicker type="text" class="form-control date start" ng-model="event.startDate"
+                    data-role="start-date"/>
+
+                <input timepicker type="text" class="form-control time start" ng-model="event.startTime"
+                    date-role="start-time"/>
+
+                <div class="expand">to</div>
+
+                <input datepicker type="text" class="form-control date end" ng-model="event.endDate"
+                    data-role="end-date"/>
+
+                <input timepicker type="text" class="form-control time end" ng-model="event.endTime"
+                    data-role="end-time"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="body" class="form-label col-sm-2 control-label">Location : </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="event.location">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit"
+                        class="btn btn-primary button-create-note"
+                        ng-click="saveEvent()"
+                        ng-if="event.status.isNew">
+                    Publish Event
+                </button>
+                <button type="submit"
+                        class="btn btn-primary button-create-note"
+                        ng-click="updateEvent()"
+                        ng-if="event.status.isPublished">
+                    Update Event
+                </button>
+                <button type="submit"
+                        class="btn btn-default button-create-note"
+                        ng-click="discardEvent()"
+                        ng-if="event.status.isNew">
+                    Discard Event
+                </button>
+                <button type="submit"
+                        class="btn btn-default button-create-note"
+                        ng-click="cancelEvent()"
+                        ng-if="event.status.isPublished && !event.status.isCancelled">
+                    Cancel Event
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

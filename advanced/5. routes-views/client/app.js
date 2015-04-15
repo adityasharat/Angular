@@ -3,18 +3,17 @@
 
     NotesApp.config(function ($routeProvider) {
         $routeProvider
-            // route for the home page
             .when('/allnotes', {
-                templateUrl : 'pages/all-notes.html',
-                controller  : 'AllNotes'
+                templateUrl: 'pages/all-notes.html',
+                controller: 'AllNotes'
             })
             .when('/createnote', {
-                templateUrl : 'pages/create-note.html',
-                controller  : 'CreateNote'
+                templateUrl: 'pages/create-note.html',
+                controller: 'CreateNote'
             })
             .when('/editnote/:noteid', {
-                templateUrl : 'pages/create-note.html',
-                controller  : 'CreateNote'
+                templateUrl: 'pages/create-note.html',
+                controller: 'CreateNote'
             })
             .otherwise({
                 redirectTo: '/allnotes'
@@ -22,7 +21,11 @@
     });
 
     NotesApp.factory('NotesService', function ($resource, $q) {
-        var resource = $resource('/data/notes/:id', null, { update: { method: 'PUT' } }),
+        var resource = $resource('/data/notes/:id', null, {
+                update: {
+                    method: 'PUT'
+                }
+            }),
             deferred = $q.defer(),
             promise = deferred.promise,
             notes = [];
@@ -65,15 +68,15 @@
         // display it in the view
         if ($routeParams.noteid) {
             note = NotesService.resource.get({
-                id : $routeParams.noteid
+                id: $routeParams.noteid
             }).$promise.then(function (data) {
-                $scope.mode = 'Update';   // change the text of the button to 'Edit Note'
+                $scope.mode = 'Update'; // change the text of the button to 'Edit Note'
                 $scope.note = data;
             });
         } else {
             note = new NotesService.resource({
-                body : '',
-                title : ''
+                body: '',
+                title: ''
             });
         }
 
@@ -82,15 +85,17 @@
                 return;
             }
 
-            if ($scope.note.id) {   // update is has id PUT
+            if ($scope.note.id) { // update is has id PUT
                 NotesService.resource
-                    .update({id : $scope.note.id}, $scope.note)
+                    .update({
+                        id: $scope.note.id
+                    }, $scope.note)
                     .$promise.then(function () {
                         $scope.note.body = '';
                         $scope.note.title = '';
                         $scope.mode = 'Add';
                     });
-            } else {    // save if it has not id POST
+            } else { // save if it has not id POST
                 angular.extend(note, $scope.note);
                 note.$save(function (data) {
                     $scope.note.body = '';
@@ -111,7 +116,7 @@
             // priority: 1,
             // terminal: true,
             // scope: {}, // {} = isolate, true = child, false/undefined = no change
-            controller: function($scope, $element, $attrs, $transclude) {},
+            //controller: function ($scope, $element, $attrs, $transclude) {},
             // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
             restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
             // template: '',

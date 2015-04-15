@@ -1,8 +1,8 @@
-var express     = require('express'),
-    fs          = require('fs'),
-    http        = require('http'),
-    notes       = [],
-    bodyParser  = require('body-parser');
+var express = require('express'),
+    fs = require('fs'),
+    http = require('http'),
+    notes = [],
+    bodyParser = require('body-parser');
 
 try {
     notes = JSON.parse(fs.readFileSync('data/notes.json').toString());
@@ -26,9 +26,9 @@ app.use(bodyParser());
 app.get('/data/notes/:id?', function (req, res) {
     var id = req.params.id;
 
-    if (id) {   // if has id, send note by id
+    if (id) { // if has id, send note by id
         res.send(notes[id], 200);
-    } else {    // else send all the notes
+    } else { // else send all the notes
         res.send(notes, 200);
     }
 });
@@ -37,9 +37,9 @@ app.post('/data/notes', function (req, res) {
     var note = req.body;
 
     note.id = notes.length; // set id
-    notes.push(note);   // add note to collection
+    notes.push(note); // add note to collection
 
-    res.send(note, 200);    // send the note back
+    res.send(note, 200); // send the note back
 });
 
 app.put('/data/notes/:id', function (req, res) {
@@ -48,7 +48,7 @@ app.put('/data/notes/:id', function (req, res) {
 
     notes[id] = note;
 
-    res.send(note, 200);    // send the note back
+    res.send(note, 200); // send the note back
 });
 
 /* Route: all others go to the defult client webapp for now */
